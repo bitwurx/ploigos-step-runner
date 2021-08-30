@@ -90,7 +90,8 @@ Configuration Key         | Required? | Default  | Description
                                                         /`container-image-repository`\
                                                         :`container-image-version`"
 `force-push-tags`         | No        | False    | Force push Git Tags
-`additional-helm-values-files`| No    | []       | Array of value files to add to argocd app for helm use
+`additional-helm-values-files` \
+                          | No    | []       | Array of value files to add to argocd app for helm use
 
 Results
 -------
