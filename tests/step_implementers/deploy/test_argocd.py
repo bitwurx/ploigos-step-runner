@@ -494,7 +494,7 @@ class TestStepImplementerDeployArgoCD__get_deployment_config_helm_chart_environm
         with TempDirectory() as temp_dir:
             parent_work_dir_path = os.path.join(temp_dir.path, 'working')
             step_config = {
-                'deployment-config-helm-chart-environment-values-file': 'values-AWEOMSE.yaml'
+                'deployment-config-helm-chart-environment-values-file': 'values-AWESOME.yaml'
             }
             step_implementer = self.create_step_implementer(
                 step_config=step_config,
@@ -505,7 +505,7 @@ class TestStepImplementerDeployArgoCD__get_deployment_config_helm_chart_environm
                 step_implementer._ArgoCD__get_deployment_config_helm_chart_environment_values_file()
             self.assertEqual(
                 deployment_config_helm_chart_env_value_file,
-                'values-AWEOMSE.yaml'
+                'values-AWESOME.yaml'
             )
 
     def test_ArgoCD__get_deployment_config_helm_chart_environment_values_file_no_config_value_no_env(self):
@@ -1731,7 +1731,7 @@ class TestStepImplementerDeployArgoCD__clone_repo(TestStepImplementerDeployArgoC
 
 class TestStepImplementerDeployArgoCD__get_repo_branch(TestStepImplementerDeployArgoCDBase):
     @patch.object(sh, 'git')
-    def test_ArgoCD__get_repo_branch_sucecss(self, git_mock):
+    def test_ArgoCD__get_repo_branch_success(self, git_mock):
         git_mock.side_effect = create_sh_side_effect(mock_stdout="feature/test")
 
         repo_branch = ArgoCD._ArgoCD__get_repo_branch()
@@ -2672,12 +2672,12 @@ class TestStepImplementerDeployArgoCD__argocd_get_app_manifest(TestStepImplement
                 parent_work_dir_path=parent_work_dir_path,
             )
 
-            arogcd_app_manifest_file = step_implementer._ArgoCD__argocd_get_app_manifest(
+            argocd_app_manifest_file = step_implementer._ArgoCD__argocd_get_app_manifest(
                 argocd_app_name='test',
                 source='live'
             )
 
-            self.assertIsNotNone(arogcd_app_manifest_file)
+            self.assertIsNotNone(argocd_app_manifest_file)
             argocd_mock.app.manifests.assert_called_once_with(
                 '--source=live',
                 'test',
@@ -2694,12 +2694,12 @@ class TestStepImplementerDeployArgoCD__argocd_get_app_manifest(TestStepImplement
                 parent_work_dir_path=parent_work_dir_path,
             )
 
-            arogcd_app_manifest_file = step_implementer._ArgoCD__argocd_get_app_manifest(
+            argocd_app_manifest_file = step_implementer._ArgoCD__argocd_get_app_manifest(
                 argocd_app_name='test',
                 source='git'
             )
 
-            self.assertIsNotNone(arogcd_app_manifest_file)
+            self.assertIsNotNone(argocd_app_manifest_file)
             argocd_mock.app.manifests.assert_called_once_with(
                 '--source=git',
                 'test',
@@ -2733,12 +2733,12 @@ class TestStepImplementerDeployArgoCD__argocd_get_app_manifest(TestStepImplement
                     re.DOTALL
                 )
             ):
-                arogcd_app_manifest_file = step_implementer._ArgoCD__argocd_get_app_manifest(
+                argocd_app_manifest_file = step_implementer._ArgoCD__argocd_get_app_manifest(
                     argocd_app_name='invalid',
                     source='live'
                 )
 
-                self.assertIsNotNone(arogcd_app_manifest_file)
+                self.assertIsNotNone(argocd_app_manifest_file)
                 argocd_mock.app.manifests.assert_called_once_with(
                     '--source=live',
                     'invalid',
